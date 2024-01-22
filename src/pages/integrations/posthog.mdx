@@ -1,0 +1,43 @@
+## Direct Integration of GA4 and PostHog with Next.js
+
+We're advancing our analytics setup by integrating both Google Analytics 4 (GA4) and PostHog directly into our Next.js project. Here's the updated plan:
+Why Both GA4 and PostHog?
+GA4 for Broad Insights: Provides a comprehensive view of user interactions and overall site performance.
+PostHog for Detailed Analysis: Delivers in-depth, event-driven insights and focuses on individual user behaviors.
+Steps for GA4 Integration:
+Confirm GA4 Property: Make sure we have a GA4 property in Google Analytics.
+Environment Variable Update: Set NEXT_PUBLIC_GOOGLE_ANALYTICS to our GA4 Measurement ID (G-XXXXXXXXXX).
+Modify \_document.js for GA4: Update the script to include the GA4 Measurement ID.
+Testing the Setup: Ensure GA4 is correctly receiving data after implementation.
+Deploy & Monitor: Roll out the changes and keep an eye on GA4 data for accuracy.
+\*\* We already have this code in \_document.js but we need to update the GA4 Measurement ID
+
+```
+<Script
+  strategy="lazyOnload"
+  src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+/>
+<Script strategy="lazyOnload">
+  {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config','${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+           `}
+</Script>
+```
+
+Integrating PostHog:
+Setup a PostHog Account: Ensure we have an account and project on PostHog.
+Add PostHog Library: Include PostHog’s library in our project npm install --save posthog-js.
+Initialize PostHog in \_app.js: Configure and set up PostHog in our application.
+Event Tracking Configuration: Decide and implement the specific events we want to track with PostHog.
+Test & Confirm: Check that events are being correctly logged in PostHog.
+Rollout & Observation: Implement the changes and monitor event tracking in PostHog.
+Reference for PostHog Integration:
+For a detailed guide on integrating PostHog with Next.js, check out PostHog’s Documentation.
+Future Consideration: Google Tag Manager (GTM)
+Why GTM? GTM can manage multiple analytics and marketing tags in one place. It’s a powerful tool for sites using various tracking and marketing tools.
+Current Decision: We’re focusing on direct integration now for simplicity and specific needs. However, as we scale and if our tracking requirements become more complex, GTM could be a valuable addition for easier management of multiple tracking tools.
+
+[Docs](https://posthog.com/docs/libraries/next-js)

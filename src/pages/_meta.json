@@ -1,0 +1,12 @@
+{
+  "index": {
+    "display": "hidden",
+    "theme": { "layout": "full" },
+    "type": "page"
+  },
+  "getting-started": "Getting started",
+  "projects": "Projects",
+  "code-documentation": "Code documentation",
+  "knowledge-sharing": "Knowledge sharing",
+  "team": "Team"
+}
